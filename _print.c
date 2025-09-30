@@ -1,67 +1,91 @@
 #include "main.h"
 #include <stdarg.h>
 
-static int _puts_nz(const char *s)
+static int print_char(va_list ap)
 {
-int count = 0;
-if (!s)
-s = "(null)";
-while (*s)
-{
-if (_putchar(*s++) == -1)
-return -1;
-count++;
+    char c = (char)va_arg(ap, int);
+
+    if (_putchar(c) == -1)
+        return (-1);
+    return (1);
 }
-return count;
+
+static int print_string(va_list ap)
+{
+    const char *s = va_arg(ap, char *);
+    int count = 0;
+
+    if (!s)
+        s = "(null)";
+    while (*s)
+    {
+        if (_putchar(*s) == -1)
+            return (-1);
+        s++;
+        count++;
+    }
+    return (count);
+}
+
+static int print_percent(void)
+{
+    if (_putchar('%') == -1)
+        return (-1);
+    return (1);
+}
+
+static int handle_specifier(char sp, va_list ap)
+{
+    if (sp == 'c')
+        return (print_char(ap));
+    else if (sp == 's')
+        return (print_string(ap));
+    else if (sp == '%')
+        return (print_percent());
+
+    if (_putchar('%') == -1)
+        return (-1);
+    if (_putchar(sp) == -1)
+        return (-1);
+    return (2);
 }
 
 int _printf(const char *format, ...)
 {
-va_list ap;
-int i = 0, count = 0;
-if (!format)
-return -1;
-va_start(ap, format);
-while (format[i])
-{
-if (format[i] != '%')
-{
-if (_putchar(format[i]) == -1)
-{ count = -1; break; }
-count++;
-i++;
-continue;
-}
-i++;
-if (!format[i])
-{ count = -1; break; }
-if (format[i] == 'c')
-{
-int c = va_arg(ap, int);
-if (_putchar((char)c) == -1)
-{ count = -1; break; }
-count++;
-}
-else if (format[i] == 's')
-{
-int added = _puts_nz(va_arg(ap, char *));
-if (added == -1) { count = -1; break; }
-count += added;
-}
-else if (format[i] == '%')
-{
-if (_putchar('%') == -1)
-{ count = -1; break; }
-count++;
-}
-else
-{
-if (_putchar('%') == -1 || _putchar(format[i]) == -1)
-{ count = -1; break; }
-count += 2;
-}
-i++;
-}
-va_end(ap);
-return count;
+    va_list ap;
+    int i = 0, total = 0, added = 0;
+
+    if (!format)
+        return (-1);
+    va_start(ap, format);
+    while (format[i])
+    {
+        if (format[i] != '%')
+        {
+            if (_putchar(format[i]) == -1)
+            {
+                va_end(ap);
+                return (-1);
+            }
+            total++;
+            i++;
+            continue;
+        }
+        i++;
+        if (!format[i])
+        {
+            va_end(ap);
+            return (-1);
+        }
+        added = handle_specifier(format[i], ap);
+        if (added == -1)
+        {
+            va_end(ap);
+            return (-1);
+        }
+        total += added;
+        i++;
+    }
+    va_end(ap);
+    return (total);
 }
