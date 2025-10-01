@@ -62,6 +62,8 @@ static int handle_specifier(char sp, va_list ap)
 		return (print_string(ap));
 	else if (sp == '%')
 		return (print_percent());
+	else if (sp == 'd' || sp == 'i')
+		return (print_number(ap));
 
 	if (_putchar('%') == -1)
 		return (-1);
