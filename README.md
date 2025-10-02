@@ -37,9 +37,10 @@ _printf("Binary of 98: %b\n", 98);
 _printf("Pointer: %p\n", main);
 _printf("Unknown specifier: %%r\n");
 
+```
 ---
-
 ## Example output
+```c
 Hello, world!
 Character: A, String: Test
 Progress: 100% complete
@@ -48,12 +49,17 @@ Unsigned: 1024, Octal: 2000, Hex: 400, HEX: 400
 Binary of 98: 1100010
 Pointer: 0x563a1f3d4e60
 Unknown specifier: %r
+```
 
 ---
 
 ## How it works
 1- _printf reads a format string.
+
+
 2- Replaces each specifier with the value from the argument list.
+
+
 3- Prints everything using _putchar.
 
 ---
