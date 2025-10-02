@@ -1,0 +1,68 @@
+.TH _PRINTF 3 "2025-10-02" "v1.0" "Holberton School"
+
+.SH NAME
+_printf \- build new printf called "_printf"
+
+.SH SYNOPSIS
+.B #include "main.h"
+.br
+
+.B int _printf(const char *format, ...);
+.br
+
+.B int _putchar(char c);
+.br
+
+.B int print_number(va_list ap);
+
+.SH DESCRIPTION
+The _printf function prints text to the screen. It can print characters, strings, and numbers. 
+It reads a format string and replaces special codes with the values we give. 
+It is kind of like the normal printf in C but simpler.
+
+It handles these special codes:
+.IP %c 
+Prints a single character.
+.IP %s 
+Prints a string.
+.IP %% 
+Prints a percent sign.
+.IP %d 
+Prints a signed decimal integer.
+.IP %i 
+Prints a signed decimal integer.
+
+.SH RETURN VALUE
+If everything works fine, _printf returns the number of characters printed. 
+If something goes wrong, it returns -1.
+
+.SH EXAMPLES
+To print a simple string:
+
+.EX
+_printf("Hello, world!\n");
+.EE
+
+To print a character and a string:
+
+.EX
+_printf("Character: %c, String: %s\n", 'A', "Test");
+.EE
+
+To print a percent sign:
+
+.EX
+_printf("Progress: 100%% complete\n");
+.EE
+
+To print a number:
+
+.EX
+_printf("Number: %d\n", 12345);
+.EE
+
+.SH AUTHORS
+.B Abdulrahman Alghamdi
+.br
+
+.B Dalal Saleh Alshamrani
