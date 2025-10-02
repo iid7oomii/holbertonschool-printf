@@ -7,6 +7,5 @@
 int _printf(const char *format, ...);
 int _putchar(char c);
 int print_number(va_list ap);
-int print_binary(va_list ap);
 
 #endif
