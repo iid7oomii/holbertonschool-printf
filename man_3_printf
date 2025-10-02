@@ -6,63 +6,77 @@ _printf \- build new printf called "_printf"
 .SH SYNOPSIS
 .B #include "main.h"
 .br
-
 .B int _printf(const char *format, ...);
 .br
-
 .B int _putchar(char c);
 .br
-
 .B int print_number(va_list ap);
+.br
+.B int print_unsigned(va_list ap, char spec);
 
 .SH DESCRIPTION
-The _printf function prints text to the screen. It can print characters, strings, and numbers. 
-It reads a format string and replaces special codes with the values we give. 
+The _printf function prints text to the screen. It can print characters, strings, and numbers.
+It reads a format string and replaces special codes with the values we give.
 It is kind of like the normal printf in C but simpler.
 
 It handles these special codes:
-.IP %c 
+.IP %c
 Prints a single character.
-.IP %s 
+.IP %s
 Prints a string.
-.IP %% 
+.IP %%
 Prints a percent sign.
-.IP %d 
+.IP %d
 Prints a signed decimal integer.
-.IP %i 
+.IP %i
 Prints a signed decimal integer.
+.IP %b
+Prints an unsigned integer in binary (custom specifier).
+.IP %u
+Prints an unsigned decimal integer.
+.IP %o
+Prints an unsigned octal integer.
+.IP %x
+Prints an unsigned hexadecimal integer (lowercase).
+.IP %X
+Prints an unsigned hexadecimal integer (uppercase).
 
 .SH RETURN VALUE
-If everything works fine, _printf returns the number of characters printed. 
+If everything works fine, _printf returns the number of characters printed.
 If something goes wrong, it returns -1.
 
 .SH EXAMPLES
 To print a simple string:
-
 .EX
 _printf("Hello, world!\n");
 .EE
 
 To print a character and a string:
-
 .EX
 _printf("Character: %c, String: %s\n", 'A', "Test");
 .EE
 
 To print a percent sign:
-
 .EX
 _printf("Progress: 100%% complete\n");
 .EE
 
 To print a number:
-
 .EX
 _printf("Number: %d\n", 12345);
+.EE
+
+To print binary:
+.EX
+_printf("Binary: %b\n", 98);
+.EE
+
+To print unsigned, octal, and hex:
+.EX
+_printf("Unsigned: %u, Octal: %o, Hex: %x, HEX: %X\n", 255, 255, 255, 255);
 .EE
 
 .SH AUTHORS
 .B Abdulrahman Alghamdi
 .br
-
 .B Dalal Saleh Alshamrani

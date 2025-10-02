@@ -68,6 +68,9 @@ static int handle_specifier(char sp, va_list ap)
 		return (print_binary(ap));
 	else if (sp == 'u' || sp == 'o' || sp == 'x' || sp == 'X')
 		return (print_unsigned(ap, sp));
+	else if (sp == 'p')
+		return (print_pointer(ap));
+
 
 	if (_putchar('%') == -1)
 		return (-1);
