@@ -70,6 +70,8 @@ static int handle_specifier(char sp, va_list ap)
 	if (_putchar(sp) == -1)
 		return (-1);
 	return (2);
+else if (sp == 'b')
+    return (print_binary(ap));
 }
 
 /**
