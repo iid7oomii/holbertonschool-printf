@@ -64,6 +64,8 @@ static int handle_specifier(char sp, va_list ap)
 		return (print_percent());
 	else if (sp == 'd' || sp == 'i')
 		return (print_number(ap));
+	else if (sp == 'b')
+		return (print_binary(ap));
 
 	if (_putchar('%') == -1)
 		return (-1);
