@@ -66,6 +66,8 @@ static int handle_specifier(char sp, va_list ap)
 		return (print_number(ap));
 	else if (sp == 'b')
 		return (print_binary(ap));
+	else if (sp == 'u' || sp == 'o' || sp == 'x' || sp == 'X')
+		total += print_unsigned(ap, sp);
 
 	if (_putchar('%') == -1)
 		return (-1);
